@@ -1,61 +1,33 @@
-# Vulnerable_ecommerce_app
-This vulnerable e-commerce application is built in a Docker environment using Apache, PHP, and MySQL technologies. It is intended solely for educational purposes to practice penetration testing. Do not attempt these techniques on real-world applications without proper consent from the application owners.
+Vulnerable_ecommerce_app This vulnerable e-commerce application is built in a Docker environment using Apache, PHP, and MySQL technologies. It is intended solely for educational purposes to practice penetration testing. Do not attempt these techniques on real-world applications without proper consent from the application owners.
 
-Default username & password 
-----------------------------
-username - infosecfolks <br>
-password - infosecfolks@123
-
-![Architecture](vulnerable%20ecommerce%20architecture.jpg)
+Architecture
 
 Follow the below steps to deploy it as docker in your machine.
 
-> [!TIP]
-> We recommend using Kali Linux as your base OS for running these Docker containers, as it comes pre-installed with the essential tools for learning penetration testing! 
+Tip
 
-## Steps to Install and enable docker
+We recommend using Kali Linux as your base OS for running these Docker containers, as it comes pre-installed with the essential tools for learning penetration testing!
 
-> [!NOTE]
-> If you don't have docker installted in your machine you can follow this below steps, otherwise skip to Building and running docker containers
+Steps to Install and enable docker Note
 
-Update kali repository <br> 
-**#sudo apt-get update**
+If you don't have docker installted in your machine you can follow this below steps, otherwise skip to Building and running docker containers
 
-Installing docker <br> 
-**#sudo apt-get install -y docker.io**
+Update kali repository #sudo apt-get update
 
-Start and enable docker service<br> 
-**#sudo systemctl start docker <br> 
-#sudo systemctl enable docker**
+Installing docker #sudo apt-get install -y docker.io
 
-Check docker version <br> 
-**#docker --version**
+Start and enable docker service #sudo systemctl start docker #sudo systemctl enable docker
 
-## Steps to run vulnerable ecommerce as docker container 
+Check docker version #docker --version
 
-After installing docker, now navigate to the cloned directory which is "vulnerable_ecommerce_app" and execute following docker commands <br> 
-to deploy and launch vulnerable ecommerce application
+Steps to run vulnerable ecommerce as docker container After installing docker, now navigate to the cloned directory which is "vulnerable_ecommerce_app" and execute following docker commands to deploy and launch vulnerable ecommerce application
 
-This command build the web container <br> 
-**#sudo docker build -t ecommerce_web .**
+This command build the web container #sudo docker build -t ecommerce_web .
 
-This command build and run the database container <br> 
-**#sudo docker run -d --name ecommerce_db -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=vuln_ecommerce mysql:5.7**
+This command build and run the database container #sudo docker run -d --name ecommerce_db -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=vuln_ecommerce mysql:5.7
 
-This command runs the web container and link with database container <br> 
-**#sudo docker run -d --name ecommerce_web -p 8090:80 --link ecommerce_db:db -v $(pwd)/app:/var/www/html ecommerce_web**
+This command runs the web container and link with database container #sudo docker run -d --name ecommerce_web -p 8090:80 --link ecommerce_db:db -v $(pwd)/app:/var/www/html ecommerce_web
 
-This command initialize the database <br> 
-**#sudo docker exec -i ecommerce_db mysql -u root -ppassword vuln_ecommerce < app/db_init.sql**
+This command initialize the database #sudo docker exec -i ecommerce_db mysql -u root -ppassword vuln_ecommerce < app/db_init.sql
 
-Set auto-restart (Containers automatically restart after poweroff/reboot of kali linux
-**#sudo docker update --restart unless-stopped ecommerce_web** <br>
-**#sudo docker update --restart unless-stopped ecommerce_db**
-
-
-Follow us for more updates <br> 
-[INFOSEC FOLKS - LINKEDIN](https://www.linkedin.com/company/infosecfolks-global/) <br> 
-[INFOSEC FOLKS - LINKEDIN](https://www.linkedin.com/company/infosecfolks-telugu) <br> 
-[INFOSEC FOLKS - YOUTUBE](https://www.youtube.com/@infosecfolks-global/) <br> 
-[INFOSEC FOLKS Telugu - YOUTUBE](https://www.youtube.com/@InfosecFolks-Telugu/) <br>
-
+Set auto-restart (Containers automatically restart after poweroff/reboot of kali linux #sudo docker update --restart unless-stopped ecommerce_web #sudo docker update --restart unless-stopped ecommerce_db
